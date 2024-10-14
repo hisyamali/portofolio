@@ -33,7 +33,7 @@ RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader
 
 # Jalankan artisan command
 RUN php artisan config:cache
-RUN php artisan serve --host 0.0.0.0 --port $PORT
+RUN php artisan serve --host http://127.0.0.1 --port $PORT
 RUN php artisan migrate
 
 # Expose port 9000 dan jalankan PHP-FPM
