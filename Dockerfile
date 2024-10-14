@@ -31,9 +31,6 @@ COPY . .
 # Install dependencies dengan Composer
 RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader
 
-# Salin file konfigurasi nginx
-COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
 # Jalankan artisan command
 RUN php artisan key:generate
 RUN php artisan config:cache
