@@ -32,7 +32,6 @@ COPY . .
 RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader
 
 # Jalankan artisan command
-RUN php artisan key:generate
 RUN php artisan config:cache
 RUN php artisan migrate
 RUN php artisan serve --host 0.0.0.0 --port $PORT
