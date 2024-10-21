@@ -32,6 +32,11 @@ RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader
 
 # Jalankan artisan command
 RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+RUN php artisan cache:clear
+RUN php artisan config:clear
+RUN php artisan view:clear
 
 # # Buat folder yang dibutuhkan
 # RUN mkdir -p /var/www/storage /var/www/vendor
