@@ -1,12 +1,12 @@
 [phases.setup]
 cmds = [
   "composer install",
-  "yarn install"
+  "npm install"
 ]
 
 [phases.build]
 cmds = [
-  "yarn run build",
+  "npm run build",
   "php artisan migrate --force"
 ]
 
