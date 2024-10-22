@@ -1,0 +1,20 @@
+[phases]
+setup = """
+# Custom handling to avoid file conflicts
+nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-unsafe-native-code-during-evaluation true --argstr allowCollisions true
+composer install
+npm install
+"""
+build = "npm run production && php artisan migrate --force"
+
+[nix]
+pkgs = [
+  "php",
+  "composer",
+  "nodejs",
+  "yarn",
+  "postgresql" # Include PostgreSQL if needed
+]
+
+[deploy]
+run = "php artisan serve --host=0.0.0.0 --port=8000"
