@@ -1,7 +1,5 @@
 [phases.setup]
 cmds = [
-  "nix-collect-garbage -d",
-  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-collisions true",
   "composer install",
   "yarn install"
 ]
@@ -12,13 +10,13 @@ cmds = [
   "php artisan migrate --force"
 ]
 
-[nix]
+[phases.nix]
 pkgs = [
   "php",
   "composer",
   "nodejs",
   "yarn",
-  "postgresql" # Include PostgreSQL if needed
+  "postgresql"
 ]
 
 [phases.deploy]
