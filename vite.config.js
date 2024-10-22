@@ -22,7 +22,7 @@ export default defineConfig({
     base: process.env.APP_URL ? new URL(process.env.APP_URL).origin + "/" : "/",
     server: {
         // Force HTTPS in development (optional, based on your setup)
-        https: true,
+        HTTPS: true,
         host: "0.0.0.0", // Ensure server is accessible over network
     },
 });
