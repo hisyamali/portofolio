@@ -24,6 +24,5 @@
         "lodash": "^4.17.21",
         "vue-router": "^4.4.5",
         "vue3-toastify": "^0.1.14"
-    },
-    "packageManager": "yarn@4.5.1"
+    }
 }
