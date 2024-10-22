@@ -39,18 +39,18 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="min-h-screen bg-gradient-to-r from-white to-blue-100 relative overflow-y-auto">
+    <div class="min-h-screen bg-gray-100 relative overflow-y-auto">
         <!-- Side Text Section -->
         <div class="absolute right-0 top-0 h-full w-1/4 bg-blue-100">
             <h1
-                class="text-8xl font-bold text-right text-blue-900 transform rotate-90 translate-x-1/2 translate-y-1/4"
-            >
+                class="text-4xl font-bold text-right text-blue-900 transform rotate-90 translate-x-1/2 translate-y-1/4"
+                >
                 HISYAM ALI WAFI
             </h1>
         </div>
 
         <!-- Content Section -->
-        <div class="container mx-auto px-8 py-12 flex justify-between items-center min-h-screen">
+        <div class="mx-auto px-8 py-12 flex justify-between items-center min-h-screen">
             <!-- Left Content -->
             <div class="w-1/2 space-y-4">
                 <h1 class="text-6xl font-bold text-gray-800">{{ profile.profession }}</h1>
@@ -99,19 +99,4 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-.bg-gradient-to-r {
-    background-image: linear-gradient(to right, #ffffff, #e0f2fe);
-}
-
-.absolute {
-    position: absolute;
-}
-
-.rotate-90 {
-    transform: rotate(90deg);
-}
-
-.container {
-    overflow: visible;
-}
 </style>
