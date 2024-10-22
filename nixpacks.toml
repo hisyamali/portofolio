@@ -1,7 +1,7 @@
 [phases.setup]
 cmds = [
-  # Custom handling to avoid file conflicts
-  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-unsafe-native-code-during-evaluation true --argstr allowCollisions true",
+  "nix-collect-garbage -d",
+  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-collisions true",
   "composer install",
   "yarn install"
 ]
@@ -21,5 +21,10 @@ pkgs = [
   "postgresql" # Include PostgreSQL if needed
 ]
 
-[deploy]
-cmd = "php artisan serve --host=0.0.0.0 --port=8000"
+[phases.deploy]
+cmd = [
+  "php artisan config:cache",
+  "php artisan route:cache",
+  "php artisan view:cache",
+  "php artisan serve --host=0.0.0.0 --port=8000"
+]
