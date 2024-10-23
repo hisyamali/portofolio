@@ -1,22 +1,20 @@
-[phases]
-
-# Setup phase to avoid file conflicts
-setup = [
+[phases.setup]
+commands = [
   "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-unsafe-native-code-during-evaluation true --option allow-collisions true"
 ]
 
-# Install dependencies for PHP and JavaScript
-install = [
+[phases.install]
+commands = [
   "composer install --no-interaction --prefer-dist --optimize-autoloader",
   "yarn install"
 ]
 
-# Build the project
-build = [
+[phases.build]
+commands = [
   "yarn run build"
 ]
 
-# Cleanup phase to free up space
-cleanup = [
+[phases.cleanup]
+commands = [
   "nix-collect-garbage -d"
 ]
