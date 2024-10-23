@@ -1,23 +1,24 @@
 [phases]
-setup = """
-# Avoid file conflicts by allowing file collisions for Yarn and Composer
-nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix \
-  --option allow-unsafe-native-code-during-evaluation true \
-  --option allow-collisions true
-"""
+
+# Setup phase to avoid file conflicts
+setup = [
+  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix",
+  "--option allow-unsafe-native-code-during-evaluation true",
+  "--option allow-collisions true"
+]
 
 # Install dependencies for PHP and JavaScript
-install = """
-composer install --no-interaction --prefer-dist --optimize-autoloader
-yarn install
-"""
+install = [
+  "composer install --no-interaction --prefer-dist --optimize-autoloader",
+  "yarn install"
+]
 
-# Build the project (if needed)
-build = """
-yarn run build
-"""
+# Build the project
+build = [
+  "yarn run build"
+]
 
-# Clean up
-cleanup = """
-nix-collect-garbage -d
-"""
+# Cleanup
+cleanup = [
+  "nix-collect-garbage -d"
+]
