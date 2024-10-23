@@ -1,11 +1,15 @@
 [phases.setup]
 commands = [
-  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-collisions true"
+  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix"
 ]
 
 [phases.install]
 commands = [
-  "composer install --no-interaction --prefer-dist --optimize-autoloader",
+  "composer install --no-interaction --prefer-dist --optimize-autoloader"
+]
+
+[phases.install-yarn]
+commands = [
   "yarn install"
 ]
 
