@@ -2,9 +2,7 @@
 
 # Setup phase to avoid file conflicts
 setup = [
-  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix",
-  "--option allow-unsafe-native-code-during-evaluation true",
-  "--option allow-collisions true"
+  "nix-env -if .nixpacks/nixpkgs-dbc4f15b899ac77a8d408d8e0f89fa9c0c5f2b78.nix --option allow-unsafe-native-code-during-evaluation true --option allow-collisions true"
 ]
 
 # Install dependencies for PHP and JavaScript
@@ -18,7 +16,7 @@ build = [
   "yarn run build"
 ]
 
-# Cleanup
+# Cleanup phase to free up space
 cleanup = [
   "nix-collect-garbage -d"
 ]
