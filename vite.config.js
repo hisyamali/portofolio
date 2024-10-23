@@ -9,7 +9,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: "resources/js/app.js",
-            // ssr: 'resources/js/ssr.js',
+            ssr: 'resources/js/ssr.js',
             refresh: true,
         }),
         vue({
@@ -22,14 +22,14 @@ export default defineConfig({
         }),
     ],
     // Ensure base is relative to load assets correctly in production
-    base,
-    ...(isLocal
-        ? {} // If local, do not configure the server
-        : {
-              server: {
-                  // Force HTTPS in non-local environments (optional)
-                  https: true,
-                  host: "0.0.0.0", // Ensure server is accessible over the network
-              },
-          }),
+    // base,
+    // ...(isLocal
+    //     ? {} // If local, do not configure the server
+    //     : {
+    //           server: {
+    //               // Force HTTPS in non-local environments (optional)
+    //               https: true,
+    //               host: "0.0.0.0", // Ensure server is accessible over the network
+    //           },
+    //       }),
 });
