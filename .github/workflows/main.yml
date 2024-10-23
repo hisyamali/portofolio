@@ -1,0 +1,26 @@
+
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    - name: 🔨 Build Project
+      run: |
+        composer install
+        yarn install
+        yarn run build
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ftpupload.net
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        server-dir: /hisyamaliwafi-portofolio.rf.gd/htdocs/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
