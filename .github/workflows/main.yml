@@ -1,0 +1,56 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main  # Ganti ke branch yang kamu gunakan
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup PHP
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'  # Sesuaikan versi PHP yang diperlukan
+          extensions: mbstring, pdo, pdo_mysql
+          tools: composer
+
+      # Step 3: Install Composer dependencies
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      # Step 4: Setup Node.js untuk Yarn
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Sesuaikan versi Node.js
+
+      # Step 5: Install Yarn dependencies
+      - name: Install dependencies with Yarn
+        run: yarn install
+
+      # Step 6: Build Frontend
+      - name: Build assets with Yarn
+        run: yarn build
+
+      # Step 7: Upload ke FTP
+      - name: Upload to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: panel.freehosting.com  # Tambahkan ini di GitHub Secrets
+          username: ${{ secrets.FTP_USERNAME_FREEHOSTING }}  # Tambahkan ini di GitHub Secrets
+          password: ${{ secrets.FTP_PASSWORD_FREEHOSTING }}  # Tambahkan ini di GitHub Secrets
+          local-dir: ./  # Direktori yang akan diupload
+          server-dir: /public_html/portofolio  # Direktori di server FTP
+
+      # Optional: Clear Laravel Cache (setelah upload ke server)
+      - name: Clear Laravel Cache
+        run: |
+          ssh user@$panel.freehosting.com 'php /path/to/artisan cache:clear'
