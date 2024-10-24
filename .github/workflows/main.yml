@@ -44,7 +44,7 @@ jobs:
       - name: Upload to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: panel.freehosting.com  # Tambahkan ini di GitHub Secrets
+          server: panel.freehosting.com:2222  # Tambahkan ini di GitHub Secrets
           username: ${{ secrets.FTP_USERNAME }}  # Tambahkan ini di GitHub Secrets
           password: ${{ secrets.FTP_PASSWORD }}  # Tambahkan ini di GitHub Secrets
           local-dir: ./  # Direktori yang akan diupload
