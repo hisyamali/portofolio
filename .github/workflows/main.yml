@@ -63,7 +63,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME_FREEHOSTING }}  # Tambahkan ini di GitHub Secrets
           password: ${{ secrets.FTP_PASSWORD_FREEHOSTING }}  # Tambahkan ini di GitHub Secrets
           local-dir: ftp-deploy/  # Direktori yang akan diupload
-          server-dir: /domains/hisyamaliwafi.com/public_html/portfolio  # Sesuaikan dengan struktur direktori FTP Anda
+          server-dir: /domains/hisyamaliwafi.com/public_html/portofolio/  # Sesuaikan dengan struktur direktori FTP Anda
 
       # Optional: Clear Laravel Cache (setelah upload ke server)
       - name: Clear Laravel Cache
