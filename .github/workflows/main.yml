@@ -54,5 +54,5 @@ jobs:
       # Optional: Clear Laravel Cache (setelah upload ke server)
       - name: Clear Laravel Cache
         run: |
-          ssh -o StrictHostKeyChecking=no user@ftp.freehosting.com 'php /path/to/artisan cache:clear'
+          php artisan cache:clear
 
