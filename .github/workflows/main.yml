@@ -3,7 +3,7 @@ name: FTP Deploy
 on:
   push:
     branches:
-      - main  # Ganti ke branch yang kamu gunakan
+      - main  # Ganti ke branch yang Anda gunakan
 
 jobs:
   ftp-deploy:
@@ -40,8 +40,12 @@ jobs:
       - name: Build assets with Yarn
         run: yarn build
 
-      # Step 7: Copy necessary files to a separate directory for FTP upload
-      - name: Prepare files for FTP upload
+      # Step 7: Copy .env.example to .env (Jika tidak ada file .env)
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
+      # Step 8: Prepare files for deployment
+      - name: Prepare deployment folder
         run: |
           mkdir -p ftp-deploy
           cp -r public/ ftp-deploy/
@@ -51,14 +55,15 @@ jobs:
           cp -r database/ ftp-deploy/
           cp artisan composer.json composer.lock .env ftp-deploy/
 
-      # Step 8: Upload ke FTP
+      # Step 9: Upload ke FTP
       - name: Upload to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ftp.freehosting.com  # Tambahkan ini di GitHub Secrets
           username: ${{ secrets.FTP_USERNAME_FREEHOSTING }}  # Tambahkan ini di GitHub Secrets
           password: ${{ secrets.FTP_PASSWORD_FREEHOSTING }}  # Tambahkan ini di GitHub Secrets
-          local-dir: ftp-deploy  # Hanya meng-upload direktori yang sudah disiapkan
+          local-dir: ftp-deploy  # Direktori yang akan diupload
+          server-dir: /domains/hisyamaliwafi.com/public_html/portfolio  # Sesuaikan dengan struktur direktori FTP Anda
 
       # Optional: Clear Laravel Cache (setelah upload ke server)
       - name: Clear Laravel Cache
