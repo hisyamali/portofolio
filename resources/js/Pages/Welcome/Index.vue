@@ -1,9 +1,9 @@
 <script setup>
+import HireMeSection from '@/Components/HireMeSection.vue';
+import ProjectSection from '@/Components/ProjectSection.vue';
+import ServiceSection from '@/Components/ServiceSection.vue';
+import SkillSection from '@/Components/SkillSection.vue';
 import { ref, onMounted, onUnmounted } from 'vue'
-import SkillSection from './components/SkillSection.vue';
-import ServiceSection from './components/ServiceSection.vue';
-import ProjectSection from './components/ProjectSection.vue';
-import HireMeSection from './components/HireMeSection.vue';
 
 const showAdditionalText = ref(false)
 let lastScrollY = 0 // Track the last scroll position
