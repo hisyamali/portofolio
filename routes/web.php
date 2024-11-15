@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/profiles')->group(function () {
         Route::get('/', [ProfileController::class, 'index']);
         Route::post('/', [ProfileController::class, 'store']);
+        Route::get('/get-data', [ProfileController::class, 'getProfile']);
         Route::post('/update-profile/{profile_id}', [ProfileController::class, 'updateProfile']);
         Route::get('/edit-password', [ProfileController::class, 'editPassword'])->name('profile.edit');
         Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update');
