@@ -18,4 +18,10 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        https: true,
+        hmr: {
+            host: 'hisyam-portofolio.up.railway.app',
+        },
+    },
 });
